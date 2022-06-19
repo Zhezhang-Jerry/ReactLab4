@@ -3,7 +3,9 @@ import { useSearch } from "react-location";
 
 const CardShowCase = ()  => {
   const search = useSearch();
-
+  const techArray = ["HTML", "CSS", "JS", "Git", "React", "Node.js"];
+  const newArray = techArray.filter(value => Object.keys(search).includes(value));
+  const bookArray = search.favouriteBooks.split(",");
   return (
     <div className="pageBody">
       <main class="has-dflex-center">
@@ -61,8 +63,8 @@ const CardShowCase = ()  => {
                 <div class="lx-row">
                   <div class="lx-row lx-card">
                     <h1 class="title">
-                      <i class="fas fa-info-circle"></i>&nbsp;Welcome to
-                      {search.name}'s corner of the Internet
+                      <i class="fas fa-info-circle"></i>&nbsp;Welcome to 
+                       {` ${search.name}`}'s corner of the Internet
                     </h1>
                   </div>
                   <div class="lx-row lx-card">
@@ -90,7 +92,18 @@ const CardShowCase = ()  => {
                       <i class="fas fa-terminal"></i>&nbsp;Technologies
                     </h1>
                     <div class="mini-cards">
-                      <span class="has-dflex-center bs-md" title="CSS">
+                      {
+                        newArray.map(
+                          (element) => {
+                            return (
+                              <span class="has-dflex-center bs-md" title={element}>
+                                <i class={`fab fa-${element}`}></i>
+                              </span>
+                            )
+                          }
+                        )
+                      }
+                      {/* <span class="has-dflex-center bs-md" title="CSS">
                         <i class="fab fa-css3-alt"></i>
                       </span>
                       <span class="has-dflex-center bs-md" title="HTML">
@@ -119,7 +132,7 @@ const CardShowCase = ()  => {
                       </span>
                       <span class="has-dflex-center bs-md" title="React">
                         <i class="fab fa-react"></i>
-                      </span>
+                      </span> */}
                     </div>
                   </div>
                   <div class="lx-row lx-card">
@@ -128,13 +141,26 @@ const CardShowCase = ()  => {
                     </h1>
                     <div class="text">
                       <ol>
-                        <li>
+                        {
+                          bookArray.map(
+                            (element) => {
+                              return (
+                                  <li>
+                                    <p>
+                                      <b>{element}</b>
+                                    </p>
+                                  </li>
+                              )
+                            }
+                          )
+                        }
+                        {/* <li>
                           <p>
                             <b>The Lord of the Rings</b>&nbsp;- J. R. R. Tolkien
                           </p>
                         </li>
-                        <li>
-                          <p>
+                        <li> */}
+                          {/* <p>
                             <b>Foundation series</b>&nbsp;- Isaac Asimov
                           </p>
                         </li>
@@ -154,7 +180,7 @@ const CardShowCase = ()  => {
                             <b>A Brief History of Time</b>&nbsp;- Stephen
                             Hawking
                           </p>
-                        </li>
+                        </li> */}
                       </ol>
                     </div>
                   </div>
