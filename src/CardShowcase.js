@@ -1,5 +1,9 @@
 import "./showcase.css";
-const CardShowCase = ({ formData })  => {
+import { useSearch } from "react-location";
+
+const CardShowCase = ()  => {
+  const search = useSearch();
+
   return (
     <div className="pageBody">
       <main class="has-dflex-center">
@@ -18,24 +22,23 @@ const CardShowCase = ({ formData })  => {
                       </div>
                       <div class="infos">
                         <span>
-                          <i class="fas fa-user-circle"></i>&nbsp;&nbsp; ARMAAN
-                          DHANJI
+                          <i class="fas fa-user-circle"></i>&nbsp;&nbsp; {search.name}
                         </span>
-                        <span>
+                        {/* <span>
                           <i class="fas fa-briefcase"></i>&nbsp;&nbsp;Full Stack
                           Developer
-                        </span>
+                        </span> */}
                       </div>
                     </div>
                   </div>
 
                   <div class="lx-card">
                     <div class="lx-row">
-                      <h1 class="title">Connect with Armaan</h1>
+                      <h1 class="title">Connect with {search.name}</h1>
                       <div class="mini-cards">
                         <a
                           class="has-dflex-center bs-md"
-                          href="https://github.com/"
+                          href={search.gitHubUrl}
                           target="_blank"
                           rel="noopener noreferrer"
                         >
@@ -43,7 +46,7 @@ const CardShowCase = ({ formData })  => {
                         </a>
                         <a
                           class="has-dflex-center bs-md"
-                          href="https://www.twitter.com/bcit"
+                          href={search.twitterUrl}
                           target="_blank"
                           rel="noopener noreferrer"
                         >
@@ -59,7 +62,7 @@ const CardShowCase = ({ formData })  => {
                   <div class="lx-row lx-card">
                     <h1 class="title">
                       <i class="fas fa-info-circle"></i>&nbsp;Welcome to
-                      Armaan's corner of the Internet
+                      {search.name}'s corner of the Internet
                     </h1>
                   </div>
                   <div class="lx-row lx-card">
@@ -68,6 +71,9 @@ const CardShowCase = ({ formData })  => {
                     </h1>
                     <div class="text">
                       <p>
+                        {search.aboutMe}
+                      </p>
+                      {/* <p>
                         Hi, my name is&nbsp;<b>Armaan Dhanji</b>, but I'm better
                         known by my nickname&nbsp;<i>@armaand</i>, and I'm a
                         teacher in the School of Computing at BCIT.
@@ -76,7 +82,7 @@ const CardShowCase = ({ formData })  => {
                         I&nbsp;&nbsp;<i class="fas fa-heart"></i>&nbsp; to code
                         full-stack projects, always looking for innovative ways
                         to write code that follows practices!
-                      </p>
+                      </p> */}
                     </div>
                   </div>
                   <div class="lx-row lx-card">

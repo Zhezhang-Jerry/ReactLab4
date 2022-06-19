@@ -1,8 +1,25 @@
-const CreateCard = ({userObj, setUserObj}) => {
+import { useNavigate } from "react-location";
+import { useFormData } from "./App";
+
+const CreateCard = () => {
+    const navigate = useNavigate();
+    const { userObj, setUserObj } = useFormData();
+
     const techArray = ["HTML", "CSS", "JS", "Git", "React", "Node.js"];
     const handleChange = (e) => {
         let updateUserObj = {};
         let userKey = e.target.name;
+        if (e.target.checked === true) {
+            let userValue = e.target.checked;
+            updateUserObj[userKey] = userValue;
+            setUserObj(
+                userObj => ({
+                    ...userObj,
+                    ...updateUserObj
+                })
+            ) 
+            return true
+        } 
         let userValue = e.target.value;
         updateUserObj[userKey] = userValue;
         setUserObj(
@@ -10,9 +27,28 @@ const CreateCard = ({userObj, setUserObj}) => {
                 ...userObj,
                 ...updateUserObj
             })
-        )
-    };
-        return (<div>
+        )};
+    
+    // const handleCheck = (e) => {
+    //     let updateUserObj = {};
+    //     let userKey = e.target.name;
+    //     let userValue = e.target.checked;
+    //     console.log(userValue)
+
+    // }
+
+    const handleClick = (e) => {
+        e.preventDefault(); // DON'T REFRESH THE PAGE
+        navigate({ to: "showcase", replace: true, search: userObj });
+      };
+
+        return (<div style={{
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              height: '100vh',
+            }}>
+            <div>
             <h style={{
                 fontSize: '50px'
             }}>Create your DevCard</h>
@@ -40,7 +76,8 @@ const CreateCard = ({userObj, setUserObj}) => {
                 <input type="text" onChange={handleChange} name="favouriteArtists" placeholder="Favorite Artists" />
             </label>
         </form>
-            <button onClick={() => console.log(userObj)}>Create Site</button>
+            <button onClick={handleClick}>Create Site</button>
+            </div>
         </div>);
   }
 
